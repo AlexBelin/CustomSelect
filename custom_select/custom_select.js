@@ -40,10 +40,10 @@ class Select {
     this.selectsEcosystem = selectsEcosystem;
     this.select = select;
     this.selectDOM = document.createElement('fieldset');
-    this.selectDOM.classList.add('select');
-    this.selectDOM.classList.add('select-fieldset');
+    this.selectDOM.classList.add('custom-select');
+    this.selectDOM.classList.add('custom-select-fieldset');
     this.selectInnerDOM = document.createElement('div');
-    this.selectInnerDOM.classList.add('select-options');
+    this.selectInnerDOM.classList.add('custom-select-options');
     this.options = [];
     this.Opened = false;
     document.body.addEventListener('keyup', this.SelectNavigation.bind(this));
@@ -238,7 +238,7 @@ class SelectTrigger {
   }
 
   Build() {
-    this.triggerDOM.classList.add('select-trigger');
+    this.triggerDOM.classList.add('custom-select-trigger');
     this.triggerDOM.innerHTML = this.trigger.innerHTML;
     this.select.selectDOM.appendChild(this.triggerDOM);
     this.Init();
