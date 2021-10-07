@@ -142,9 +142,17 @@ class Select {
 class SelectMulti extends Select {
   constructor(selectsEcosystem, select) {
     super(selectsEcosystem, select);
+    this.InputChoices = document.createElement('input');
+  }
+
+  BuildInputChoices() {
+    this.InputChoices.setAttribute('name', this.select.getAttribute('name'));
+    this.InputChoices.style.display = 'none';
+    this.selectDOM.appendChild(this.InputChoices);
   }
 
   Build() {
+    this.BuildInputChoices();
     this.Trigger = new SelectTrigger(this, Array.from(this.select.children)[0]);
     this.Trigger.Build();
     var _index = 0;
@@ -159,6 +167,17 @@ class SelectMulti extends Select {
     this.select.removeAttribute('name');
     this.BuildSelectContent();
     this.HideOriginSelect();
+  }
+
+  WriteChoices() {
+    var _StrChoices = '';
+    Array.from(this.options).map(elem => {
+      if(elem.Clicked) {
+        _StrChoices += elem.value + ',';
+      }
+    });
+    _StrChoices = _StrChoices.slice(0, -1);
+    this.InputChoices.value = _StrChoices;
   }
 }
 
@@ -209,6 +228,7 @@ class SelectOptionMulti extends SelectOption {
   constructor(select, option) {
     super(select, option);
     this.inputDOM = document.createElement('input');
+    this.Clicked = false;
   }
 
   Build() {
@@ -223,7 +243,15 @@ class SelectOptionMulti extends SelectOption {
 
   Click(event) {
     event.stopPropagation();
-    this.inputDOM.click();
+    if(this.Clicked) {
+      this.Clicked = false;
+      this.inputDOM.checked = false;
+    }
+    else{
+      this.Clicked = true;
+      this.inputDOM.checked = true;
+    }
+    this.select.WriteChoices();
   }
 }
 
