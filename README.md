@@ -10,4 +10,4 @@ USE
 3) Initialize the instance.
 4) In the example below we will have one select with multiple selection and another one with standard behavior.
 
-![alt text](https://github.com/AlexBelin/CustomSelect/blob/main/screencode.jpg)
+![alt text](https://github.com/AlexBelin/CustomSelect/blob/main/screencode.JPG)
